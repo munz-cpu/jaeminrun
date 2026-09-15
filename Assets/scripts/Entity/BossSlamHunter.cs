@@ -1,5 +1,6 @@
 using Unity.Tutorials.Editor;
 using UnityEngine;
+using UnityEngine.AdaptivePerformance;
 
 public class BossSlamHunter : MonoBehaviour
 {
@@ -43,7 +44,10 @@ public class BossSlamHunter : MonoBehaviour
     private Quaternion restingRotation;
     private Camera viewCamera;
     [Header("효과음")]
+    [SerializeField] AudioClip earthquake;
     [SerializeField] AudioClip detected;
+
+    AudioSource audioSource;
 
     private void Start()
     {
@@ -55,6 +59,7 @@ public class BossSlamHunter : MonoBehaviour
         exposedY = groundY + visibleHeight - spriteTopOffset;
         armBottomOffset = arm.position.y - armRenderer.bounds.min.y;
         HideVisuals();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -102,6 +107,7 @@ public class BossSlamHunter : MonoBehaviour
 
     private void BeginWarning()
     {
+        if (earthquake)audioSource.PlayOneShot(earthquake);
         // Choose a position once per cycle; no horizontal movement while visible.
         float cameraX = viewCamera ? viewCamera.transform.position.x : stage.player.transform.position.x;
         scanCenterX = cameraX + 5f;

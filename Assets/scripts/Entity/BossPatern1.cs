@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(AudioSource))]
 public class BossPatern1 : MonoBehaviour
 {
     [Header("References")]
@@ -48,12 +49,22 @@ public class BossPatern1 : MonoBehaviour
     public bool MinionsSpawning { get; private set; }
     public Vector3 MouthPosition => mouth != null ? mouth.position : transform.TransformPoint(mouthOffset);
 
+    [Header("효과음")]
+    [SerializeField] private AudioClip cookieSfx;
+    [SerializeField] private AudioClip swingSfx;
+    [SerializeField] private AudioClip minionSfx;
+
+    private AudioSource audioSource;
+
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         health = GetComponent<EntityHealth>();
         floating = GetComponent<FloatingObject>();
         hitbox = GetComponent<Collider2D>();
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
         home = transform.position;
         body.bodyType = RigidbodyType2D.Kinematic;
         body.gravityScale = 0f;
@@ -85,6 +96,7 @@ public class BossPatern1 : MonoBehaviour
             Coroutine combinedMinions = null;
 
             CurrentPattern = "Cookies";
+            PlayPatternSfx(cookieSfx);
             if (combineWithCookies)
                 combinedMinions = StartCoroutine(SpawnMinions());
             for (int i = 0; i < shotCount; i++)
@@ -100,6 +112,7 @@ public class BossPatern1 : MonoBehaviour
                 yield return combinedMinions;
             yield return new WaitForSeconds(patternInterval);
             CurrentPattern = "Swing";
+            PlayPatternSfx(swingSfx);
             if (combine && !combineWithCookies)
                 combinedMinions = StartCoroutine(SpawnMinions());
             // FloatingObject and Rigidbody2D must not write the boss position together.
@@ -157,6 +170,7 @@ public class BossPatern1 : MonoBehaviour
     private IEnumerator SpawnMinions()
     {
         MinionsSpawning = true;
+        PlayPatternSfx(minionSfx);
         for (int i = 0; i < minionCount; i++)
         {
             if (player == null)
@@ -172,6 +186,12 @@ public class BossPatern1 : MonoBehaviour
         }
         spawned.RemoveAll(item => item == null);
         MinionsSpawning = false;
+    }
+
+    private void PlayPatternSfx(AudioClip clip)
+    {
+        if (clip != null)
+            audioSource.PlayOneShot(clip);
     }
     private IEnumerator MoveTo(Vector3 end, float duration)
     {
