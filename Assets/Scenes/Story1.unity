@@ -618,9 +618,11 @@ MonoBehaviour:
   sounds:
   - {fileID: 0}
   - {fileID: 8300000, guid: 82f374b3dd8c04648b4569c98b545184, type: 3}
+  - {fileID: 8300000, guid: 951f62e116c7bcc45a87ee5dc716326a, type: 3}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 5996f148dfcb4bb4fb1a44415011c546, type: 3}
+  - {fileID: 8300000, guid: 899f26fcb7d136f46aec0eab272b00a1, type: 3}
   audioSource: {fileID: 1170298736}
   displayDuration: 2
   fadeDuration: 0.5

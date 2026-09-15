@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CrossfadeSlideshow : MonoBehaviour, IPointerClickHandler
@@ -29,6 +30,10 @@ public class CrossfadeSlideshow : MonoBehaviour, IPointerClickHandler
     [Tooltip("일시정지 중에도 사진을 계속 전환합니다.")]
     [SerializeField] private bool useUnscaledTime = true;
 
+    [Header("마지막 사진 이후")]
+    [Tooltip("씬을 지정하면 마지막 사진을 보여준 뒤 이동합니다. 비워두면 계속 반복합니다.")]
+    [SerializeField] private string nextScenePath;
+
     private Coroutine slideshowCoroutine;
     private readonly List<Sprite> validPhotos = new List<Sprite>();
     private readonly List<int> photoSourceIndices = new List<int>();
@@ -55,7 +60,7 @@ public class CrossfadeSlideshow : MonoBehaviour, IPointerClickHandler
         if (!TryInitialize())
             return;
 
-        if (validPhotos.Count > 1)
+        if (validPhotos.Count > 1 || !string.IsNullOrWhiteSpace(nextScenePath))
             slideshowCoroutine = StartCoroutine(PlaySlideshow());
     }
 
@@ -132,6 +137,20 @@ public class CrossfadeSlideshow : MonoBehaviour, IPointerClickHandler
         {
             yield return Wait(displayDuration);
             skipWait = false;
+
+            if (currentIndex == validPhotos.Count - 1 && !string.IsNullOrWhiteSpace(nextScenePath))
+            {
+                if (!Application.CanStreamedLevelBeLoaded(nextScenePath))
+                {
+                    Debug.LogError($"다음 씬 '{nextScenePath}'을(를) 로드할 수 없습니다. Build Settings에 씬을 추가하고 활성화해주세요.", this);
+                    slideshowCoroutine = null;
+                    yield break;
+                }
+
+                yield return SceneManager.LoadSceneAsync(nextScenePath);
+                yield break;
+            }
+
             isTransitioning = true;
 
             int nextIndex = (currentIndex + 1) % validPhotos.Count;
