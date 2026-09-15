@@ -1,0 +1,24 @@
+산1_0 pos=(38.03, -6.90, 0.00) scale=(17.15, 4.08, 2.84) sprite=Assets/Images/배경/산1.png bounds=Center: (38.03, -6.90, 0.00), Extents: (48.78, 5.61, 0.28) order=-5 layer=Default
+산1_0 (1) pos=(135.59, -5.65, 0.00) scale=(17.15, 4.08, 2.84) sprite=Assets/Images/배경/산1.png bounds=Center: (135.59, -5.65, 0.00), Extents: (48.78, 5.61, 0.28) order=-5 layer=Default
+산1_0 (2) pos=(233.15, -4.40, 0.00) scale=(17.15, 4.08, 2.84) sprite=Assets/Images/배경/산1.png bounds=Center: (233.15, -4.40, 0.00), Extents: (48.78, 5.61, 0.28) order=-5 layer=Default
+boss pos=(5.18, -2.49, 0.00) scale=(1.00, 1.00, 1.00) sprite=Assets/Images/적/이서후/아래서 위.png bounds=Center: (5.18, -2.49, 0.00), Extents: (7.14, 8.02, 0.10) order=-1 layer=Default
+좌우 벽 pos=(-4.79, 0.76, -10.00) scale=(1.00, 1.00, 1.00) collider=Center: (-7.50, 0.76, -10.00), Extents: (0.50, 10.30, 0.00) layer=8
+PLAYER pos=(2.00, -1.90, 0.00) scale=(1.00, 1.00, 1.00) collider=Center: (2.00, -3.03, 0.00), Extents: (0.37, 0.37, 0.00) layer=3
+Player pos=(1.96, -2.20, 0.00) scale=(0.86, 0.79, 1.00) sprite=Assets/Images/플레이어/120.png bounds=Center: (2.24, -2.44, 0.00), Extents: (0.49, 1.16, 0.10) order=20 layer=Default
+collider pos=(2.00, -1.90, 0.00) scale=(1.00, 1.00, 1.00) collider=Center: (2.00, -2.11, 0.00), Extents: (0.24, 0.69, 0.00) layer=3
+cinemachine Binding pos=(9.95, -3.50, 0.00) scale=(1.00, 1.00, 1.00) collider=Center: (116.05, -1.36, 0.00), Extents: (126.85, 10.10, 0.00) layer=7
+Main Camera  pos=(2.00, 0.76, -10.00) scale=(1.00, 1.00, 1.00)
+Global Light 2D pos=(0.00, 0.00, 0.00) scale=(1.00, 1.00, 1.00)
+하늘_배경 pos=(117.04, 1.38, 0.00) scale=(19.56, 2.20, 1.10) sprite=Assets/Images/배경/하늘.png bounds=Center: (117.04, 1.38, 0.00), Extents: (125.22, 7.93, 0.11) order=-20 layer=Default
+Canvas pos=(2.00, 0.76, 90.00) scale=(0.04, 0.04, 0.04)
+bossbar pos=(-4.87, 4.82, 90.00) scale=(0.04, 0.04, 0.04)
+Background pos=(-4.87, 5.24, 90.00) scale=(0.04, 0.04, 0.04)
+Fill Area pos=(-4.66, 5.24, 90.00) scale=(0.04, 0.04, 0.04)
+Fill pos=(-4.87, 5.24, 90.00) scale=(0.04, 0.04, 0.04)
+cinemachine brain pos=(2.00, 0.76, -10.00) scale=(1.00, 1.00, 1.00)
+플랫펌_에셋_0 pos=(54.03, -6.84, 0.00) scale=(18.97, 9.18, 9.18) sprite=Assets/Images/플랫폼/플랫펌_에셋.png bounds=Center: (54.03, -6.84, 0.00), Extents: (63.18, 1.70, 0.92) order=2 layer=Default collider=Center: (54.03, -6.84, 0.00), Extents: (63.18, 1.70, 0.00) layer=6
+플랫펌_에셋_0 (1) pos=(179.91, -6.84, 0.00) scale=(18.97, 9.18, 9.18) sprite=Assets/Images/플랫폼/플랫펌_에셋.png bounds=Center: (179.91, -6.84, 0.00), Extents: (63.18, 1.70, 0.92) order=2 layer=Default collider=Center: (179.91, -6.84, 0.00), Extents: (63.18, 1.70, 0.00) layer=6
+플랫펌_에셋_0 (2) pos=(108.40, -6.84, 0.00) scale=(18.97, 9.18, 9.18) sprite=Assets/Images/플랫폼/플랫펌_에셋.png bounds=Center: (108.40, -6.84, 0.00), Extents: (63.18, 1.70, 0.92) order=2 layer=Default collider=Center: (108.40, -6.84, 0.00), Extents: (63.18, 1.70, 0.00) layer=6
+로켓_0 pos=(237.49, 0.96, 0.00) scale=(2.36, 2.21, 1.00) sprite=Assets/Images/배경/로켓.png bounds=Center: (237.49, 0.96, 0.00), Extents: (4.82, 6.54, 0.10) order=0 layer=Default
+초가집_0 pos=(2.07, -3.84, 0.00) scale=(1.00, 1.00, 1.00) sprite=Assets/Images/배경/초가집.png bounds=Center: (2.07, -3.84, 0.00), Extents: (3.00, 1.46, 0.10) order=0 layer=Default
+팔 pos=(6.14, 3.98, 0.00) scale=(2.76, 1.82, 1.00) sprite=Assets/Images/적/이서후/옆모습.png bounds=Center: (6.14, 3.98, 0.00), Extents: (7.86, 10.02, 0.10) order=0 layer=Default

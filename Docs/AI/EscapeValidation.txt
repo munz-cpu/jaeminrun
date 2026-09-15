@@ -1,0 +1,1 @@
+PASS: 27 checks. Hut artwork cover, no attack behind cover, boss scan, timed warning/rise/fall, lethal exposed strike, retry, boarding and victory.
