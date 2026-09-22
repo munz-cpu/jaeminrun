@@ -31,7 +31,8 @@ public class CrossfadeSlideshow : MonoBehaviour, IPointerClickHandler
     [SerializeField] private bool useUnscaledTime = true;
 
     [Header("마지막 사진 이후")]
-    [Tooltip("씬을 지정하면 마지막 사진을 보여준 뒤 이동합니다. 비워두면 계속 반복합니다.")]
+    [InspectorName("다음 씬 이름 또는 경로")]
+    [Tooltip("예: 전투1 또는 Assets/Scenes/전투1.unity. 비워두면 계속 반복합니다.")]
     [SerializeField] private string nextScenePath;
 
     private Coroutine slideshowCoroutine;

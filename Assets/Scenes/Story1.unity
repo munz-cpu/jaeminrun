@@ -627,6 +627,7 @@ MonoBehaviour:
   displayDuration: 2
   fadeDuration: 0.5
   useUnscaledTime: 1
+  nextScenePath: 
 --- !u!82 &1170298736
 AudioSource:
   m_ObjectHideFlags: 0

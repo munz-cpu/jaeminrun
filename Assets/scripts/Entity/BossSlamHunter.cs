@@ -142,6 +142,7 @@ public class BossSlamHunter : MonoBehaviour
     private void Strike()
     {
         if (slamStarted || stage.playerHealth.IsDead) return;
+        if (detected) audioSource.PlayOneShot(detected);
         float targetX = stage.PlayerBounds.center.x;
         armImpact = new Vector3(targetX, groundY + armBottomOffset, arm.position.z);
         armRaised = armImpact + Vector3.up * 8f;
@@ -178,7 +179,7 @@ public class BossSlamHunter : MonoBehaviour
 
     private void KillPlayer()
     {
-        if (detected) AudioSource.PlayClipAtPoint(detected,arm.position);
+        
         if (!stage.playerHealth.IsDead)
             stage.playerHealth.TakeDamage(stage.playerHealth.CurrentHealth);
     }
