@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class 눈이난리침 : MonoBehaviour
+public class 회전위아래 : MonoBehaviour
 {
     [Header("위아래 이동")]
     [SerializeField] private float 이동거리 = 0.2f;

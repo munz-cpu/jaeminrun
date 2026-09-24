@@ -3,10 +3,12 @@ using UnityEngine;
 public class 위아래양옆으로왔다갔다 : MonoBehaviour
 {
     [Header("위아래")]
+    [SerializeField] private bool 위아래이동 = true;
     [SerializeField] private float 위아래거리 = 0.2f;
     [SerializeField] private float 위아래속도 = 5f;
 
     [Header("좌우")]
+    [SerializeField] private bool 좌우이동 = true;
     [SerializeField] private float 좌우거리 = 0.2f;
     [SerializeField] private float 좌우속도 = 3f;
 
@@ -19,8 +21,11 @@ public class 위아래양옆으로왔다갔다 : MonoBehaviour
 
     void Update()
     {
-        float x = Mathf.Sin(Time.time * 좌우속도) * 좌우거리;
-        float y = Mathf.Sin(Time.time * 위아래속도) * 위아래거리;
+        float x = 0;
+        float y = 0;
+
+        if (좌우이동) x = Mathf.Sin(Time.time * 좌우속도) * 좌우거리;
+        if (위아래이동) y = Mathf.Sin(Time.time * 위아래속도) * 위아래거리;
 
         transform.localPosition =
             시작위치 + new Vector3(x, y, 0f);

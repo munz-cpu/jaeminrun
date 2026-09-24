@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class 동공지랄 : MonoBehaviour
+public class 크기뻐끔뻐끔 : MonoBehaviour
 {
     [SerializeField] private float 사이클1개걸리는시간 = 0.5f;
     [SerializeField] private Vector2 size = new Vector2(0.7f, 1.2f);
