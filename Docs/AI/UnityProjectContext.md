@@ -1,6 +1,6 @@
 # Unity project context
 
-Analyzed 2026-09-11. No Git repository present. Project root: current jaeminrun workspace.
+Analyzed 2026-09-22 at commit 45109c3. Project root: current jaeminrun workspace.
 
 - Unity 6000.6.0f1; 2D sprites/physics. URP installed; Input System PlayerInput message callbacks drive RunnerMovement and Attack.
 - Startup/build scene: Assets/Scenes/전투1.unity. No networking or separate bootstrap found.
@@ -41,3 +41,9 @@ Analyzed 2026-09-11. No Git repository present. Project root: current jaeminrun 
 - Battle 2 uses the existing long static terrain, camera/confiner, ship and character art. EscapeStageController, HutCover and BossSlamHunter implement artwork-aligned concealment behind houses, a periodic rumble/rise/reveal with a local boss scan and lethal exposure, a fast fist accent only when exposed, and ship boarding/takeoff.
 - BattleEndController supports opt-in objective victory; battle 1's boss-death victory remains the default. Battle 2 is enabled in Build Settings for retry.
 - Setup, tuning, backup and validation instructions: `Docs/AI/EscapeStage.md`.
+
+## Battle 3 survival (2026-09-22)
+
+- `Battle3GameController` owns the flight-survival loop, projectile spawning, failure result, and objective-clear sequence.
+- Surviving for 45 seconds stops hazards, moves the Earth in from the right, flies the player toward it, and records an objective victory before loading the shared result scene.
+- `Battle3FlightController` owns input-driven vertical flight. Battle 3 remains a small MonoBehaviour/Inspector-configured scene in the default Assembly-CSharp assembly.

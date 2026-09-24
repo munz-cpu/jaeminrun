@@ -9,16 +9,18 @@ public class Battle3Projectile : MonoBehaviour
 
     private Battle3GameController gameController;
     private Vector2 moveDirection = Vector2.left;
+    private float speedMultiplier = 1f;
 
-    public void Initialize(Battle3GameController controller, Vector2 direction)
+    public void Initialize(Battle3GameController controller, Vector2 direction, float movementSpeedMultiplier)
     {
         gameController = controller;
         moveDirection = direction.normalized;
+        speedMultiplier = Mathf.Max(1f, movementSpeedMultiplier);
     }
 
     private void Update()
     {
-        transform.position += (Vector3)(moveDirection * moveSpeed * Time.deltaTime);
+        transform.position += (Vector3)(moveDirection * moveSpeed * speedMultiplier * Time.deltaTime);
         transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
 
         Camera gameCamera = gameController != null ? gameController.GameCamera : Camera.main;
