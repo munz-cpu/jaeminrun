@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 32310798}
   - component: {fileID: 32310797}
   m_Layer: 0
-  m_Name: "\uC544\uB798\uC624\uB978\uCABD\uB208"
+  m_Name: "\uC544\uB798\uC67C\uCABD\uB208"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2910,7 +2910,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &516588609
 Transform:
   m_ObjectHideFlags: 0
@@ -3305,6 +3305,9 @@ GameObject:
   - component: {fileID: 570405599}
   - component: {fileID: 570405601}
   - component: {fileID: 570405600}
+  - component: {fileID: 570405602}
+  - component: {fileID: 570405604}
+  - component: {fileID: 570405605}
   m_Layer: 0
   m_Name: "\uD328\uD134 \uB9E4\uB2C8\uC800"
   m_TagString: Untagged
@@ -3339,6 +3342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfafff7e386f4eb8be5f17ffed633dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Battle4AimedVolley
+  "\uCEF4\uD3EC\uB10C\uD2B8\uC774\uB984": 
   player: {fileID: 1783997888}
   projectilePrefab: {fileID: 8800289237402354920, guid: d2546d983e5d19743912407a7a1346f2, type: 3}
   projectileCount: 20
@@ -3356,6 +3360,8 @@ MonoBehaviour:
   lineWidth: 0.03
   lineLengthPastPlayer: 30
   sortingOrder: 1
+  preparationSfx: {fileID: 8300000, guid: ff4c339e303d55e46944045f08c36120, type: 3}
+  fireSfx: {fileID: 8300000, guid: 40b6872a080db354b97884308d9b52b5, type: 3}
 --- !u!114 &570405601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3373,8 +3379,100 @@ MonoBehaviour:
   - {fileID: 570405600}
   - {fileID: 570405600}
   - {fileID: 570405600}
+  - {fileID: 570405602}
+  - {fileID: 570405604}
+  - {fileID: 570405605}
   firstDelay: 1
   delayBetweenPatterns: 0.1
+--- !u!114 &570405602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570405598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 205a1968a2c54232a6425ed4768602d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Battle4FanVolley
+  "\uCEF4\uD3EC\uB10C\uD2B8\uC774\uB984": "\uD328\uD1342"
+  player: {fileID: 1783997888}
+  firstMuzzle: {fileID: 942862673}
+  secondMuzzle: {fileID: 911280796}
+  projectilePrefab: {fileID: 1074018317143570216, guid: a33ff86cdde862245bfab7d6b3b52b1f, type: 3}
+  projectilesPerFan: 3
+  fanAngle: 40
+  burstCount: 10
+  delayBetweenBursts: 0.2
+  preparationDuration: 0.2
+  projectileSpeed: 10
+  projectileLifetime: 3
+  wallHoldTime: 0
+  projectileDamage: 3
+  colorFlashInterval: 0.08
+  preparationSfx: {fileID: 8300000, guid: f6caae576d6fa1141baf9147af69a84e, type: 3}
+  fireSfx: {fileID: 0}
+--- !u!114 &570405604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570405598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7efd4416b5eb4fa18f99d4b640954cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Battle4Pattern3FanVolley
+  player: {fileID: 1783997888}
+  firstMuzzle: {fileID: 32310796}
+  secondMuzzle: {fileID: 398483438}
+  projectilePrefab: {fileID: 1074018317143570216, guid: a33ff86cdde862245bfab7d6b3b52b1f, type: 3}
+  projectilesPerFan: 7
+  fanAngle: 120
+  firstMuzzleStartAngle: 270
+  secondMuzzleStartAngle: 270
+  burstCount: 8
+  delayBetweenBursts: 0
+  preparationDuration: 0.1
+  delayBetweenProjectiles: 0.05
+  angleShiftPerBurst: 0
+  projectileSpeed: 5
+  projectileLifetime: 2
+  projectileDamage: 1
+  colorFlashInterval: 0.08
+  preparationSfx: {fileID: 8300000, guid: f6caae576d6fa1141baf9147af69a84e, type: 3}
+  fireSfx: {fileID: 0}
+--- !u!114 &570405605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570405598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 896d7ff33e8d416992bfbc99a155d934, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Battle4Pattern4
+  player: {fileID: 1783997888}
+  lowerPrefab: {fileID: 1179339995852670894, guid: f7df013413f7b594a945ed8962626f06, type: 3}
+  upperPrefab: {fileID: 6255630432619088375, guid: ec71466c94f0c6e4eb876f9d119fc1e0, type: 3}
+  lowerContactDamage: 3
+  upperContactDamage: 10
+  lowerSpawnPosition: {x: -8.5, y: -4.1}
+  lowerExitX: 9.5
+  lowerMoveSpeed: 7
+  lowerSpawnInterval: 0.2
+  upperLeftX: -7.5
+  upperRightX: 7.5
+  upperStartY: -3.3
+  upperArcRadius: 5.5
+  upperPreparationTime: 0.4
+  upperArcDuration: 1.7
+  upperRotationDegrees: 90
+  upperEndHoldTime: 0.3
 --- !u!1 &570695893
 GameObject:
   m_ObjectHideFlags: 0
@@ -5415,7 +5513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &921387672
 Transform:
   m_ObjectHideFlags: 0
@@ -6976,7 +7074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: "Assembly-CSharp::\uB4B7\uBC30\uACBD\uBED8\uAC85"
   "\uC804\uD658\uC2DC\uAC04": 1
-  "\uB3D9\uC791\uC2DC\uAC04": 12
+  "\uB3D9\uC791\uC2DC\uAC04": 0
 --- !u!1 &1265410752
 GameObject:
   m_ObjectHideFlags: 0
@@ -7741,7 +7839,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1412973023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8840,7 +8938,7 @@ RectTransform:
   m_Father: {fileID: 1477043819}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0.000030517578, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
@@ -9118,6 +9216,7 @@ GameObject:
   - component: {fileID: 1783997889}
   - component: {fileID: 1783997891}
   - component: {fileID: 1783997892}
+  - component: {fileID: 1783997893}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -9268,10 +9367,10 @@ MonoBehaviour:
   originalSprite: {fileID: 5517882187124962707, guid: aa624f552d941564ca2ada1a2b739cc1, type: 3}
   hitSprite: {fileID: 0}
   hitEffectSec: 0.2
-  invincibilityDuration: 0.3
+  invincibilityDuration: 0.1
   turnRed: 1
-  hitColor: {r: 1, g: 0, b: 0, a: 0.3764706}
-  hitSfx: {fileID: 0}
+  hitColor: {r: 0.3726415, g: 0, b: 0, a: 1}
+  hitSfx: {fileID: 8300000, guid: 5996f148dfcb4bb4fb1a44415011c546, type: 3}
 --- !u!114 &1783997892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9285,6 +9384,103 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: "Assembly-CSharp::\uD50C\uB808\uC774\uC5B4\uCCB4\uB825\uBC14"
   playerbar: {fileID: 1573665988}
+--- !u!82 &1783997893
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783997886}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1812407820
 GameObject:
   m_ObjectHideFlags: 0

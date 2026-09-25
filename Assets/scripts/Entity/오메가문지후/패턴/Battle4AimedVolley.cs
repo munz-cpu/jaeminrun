@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Battle4AimedVolley : Battle4Pattern
 {
+    [SerializeField] private string 컴포넌트이름;
     [Header("References")]
     [SerializeField] private Transform player;
     [SerializeField] private GameObject projectilePrefab;
@@ -31,6 +32,10 @@ public class Battle4AimedVolley : Battle4Pattern
     [SerializeField, Min(1f)] private float lineLengthPastPlayer = 30f;
     [SerializeField] private int sortingOrder = 100;
 
+    [Header("Sound")]
+    [SerializeField] private AudioClip preparationSfx;
+    [SerializeField] private AudioClip fireSfx;
+
     private readonly List<LineRenderer> lines = new List<LineRenderer>();
     private readonly List<GameObject> projectiles = new List<GameObject>();
     private Material lineMaterial;
@@ -47,11 +52,13 @@ public class Battle4AimedVolley : Battle4Pattern
         Vector3[] firePositions = ChooseFirePositions();
         bool[] sideAims = ChooseSideAims(firePositions.Length);
         activeShots = 0;
+        PlayPatternSound(preparationSfx);
         for (int shotIndex = 0; shotIndex < firePositions.Length; shotIndex++)
         {
             if (!isActiveAndEnabled) yield break;
             activeShots++;
-            StartCoroutine(PrepareAndFire(firePositions[shotIndex], sideAims[shotIndex]));
+            StartCoroutine(PrepareAndFire(firePositions[shotIndex], sideAims[shotIndex],
+                shotIndex == 0));
             if (delayBetweenShots > 0f && shotIndex < firePositions.Length - 1)
                 yield return new WaitForSeconds(delayBetweenShots);
         }
@@ -60,7 +67,7 @@ public class Battle4AimedVolley : Battle4Pattern
             yield return null;
     }
 
-    private IEnumerator PrepareAndFire(Vector3 firePosition, bool aimAside)
+    private IEnumerator PrepareAndFire(Vector3 firePosition, bool aimAside, bool playFireSound)
     {
         if (player == null)
         {
@@ -85,6 +92,7 @@ public class Battle4AimedVolley : Battle4Pattern
         }
 
         RemoveLine(line);
+        if (playFireSound) PlayPatternSound(fireSfx);
         Vector2 direction = (target - firePosition).normalized;
         GameObject shot = Instantiate(projectilePrefab, firePosition,
             Quaternion.FromToRotation(Vector3.up, direction));

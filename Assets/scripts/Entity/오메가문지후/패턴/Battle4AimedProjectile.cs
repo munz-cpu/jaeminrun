@@ -10,18 +10,22 @@ public class Battle4AimedProjectile : MonoBehaviour
     private SpriteRenderer sprite;
     private bool hasEnteredView;
     private bool stopped;
+    private bool stopAtWall;
     private bool hasHitPlayer;
     private Collider2D hitbox;
     private Collider2D playerCollider;
     private EntityHealth playerHealth;
-    private const float PlayerDamage = 5f;
+    private float playerDamage = 5f;
 
-    public void Launch(Vector2 aimDirection, float movementSpeed, float lifetime, float holdTime, Transform player)
+    public void Launch(Vector2 aimDirection, float movementSpeed, float lifetime, float holdTime,
+        Transform player, float damage = 5f, bool stopAtWall = true)
     {
         direction = aimDirection.normalized;
         speed = movementSpeed;
         remainingFlightTime = lifetime;
         wallHoldTime = holdTime;
+        this.stopAtWall = stopAtWall;
+        playerDamage = Mathf.Max(0f, damage);
         arenaCamera = Camera.main;
         sprite = GetComponent<SpriteRenderer>();
         hitbox = GetComponent<Collider2D>();
@@ -45,7 +49,7 @@ public class Battle4AimedProjectile : MonoBehaviour
         if (stopped) return;
 
         Vector3 nextPosition = transform.position + (Vector3)(direction * (speed * Time.deltaTime));
-        if (arenaCamera != null)
+        if (stopAtWall && arenaCamera != null)
         {
             Vector3 currentView = arenaCamera.WorldToViewportPoint(transform.position);
             Vector3 nextView = arenaCamera.WorldToViewportPoint(nextPosition);
@@ -76,7 +80,7 @@ public class Battle4AimedProjectile : MonoBehaviour
         if (!ColliderOverlap2D.IsOverlapping(hitbox, playerCollider)) return;
 
         hasHitPlayer = true;
-        playerHealth.TakeDamage(PlayerDamage);
+        playerHealth.TakeDamage(playerDamage);
     }
 
     private bool IsInsideView(Vector3 viewport)
