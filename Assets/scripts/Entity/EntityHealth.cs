@@ -8,6 +8,7 @@ public class EntityHealth : MonoBehaviour
     [SerializeField] private Sprite originalSprite;
     [SerializeField] private Sprite hitSprite;
     [SerializeField] private float hitEffectSec = 0.2f;
+    [SerializeField, Min(0f)] private float invincibilityDuration = 0f;
     [SerializeField] bool turnRed = false;
     [SerializeField] private Color hitColor = Color.red;
 
@@ -17,6 +18,7 @@ public class EntityHealth : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
     private Coroutine hitRoutine;
+    private float nextDamageTime;
     public float CurrentHealth => currentHealth;
     public bool IsDead => currentHealth <= 0f;
     public event System.Action<float> Damaged;
@@ -35,9 +37,10 @@ public class EntityHealth : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
-        if (IsDead || damage <= 0f) return;
+        if (IsDead || damage <= 0f || Time.time < nextDamageTime) return;
         float appliedDamage = Mathf.Min(currentHealth, damage);
         currentHealth = Mathf.Max(0f, currentHealth-damage);
+        nextDamageTime = Time.time + invincibilityDuration;
         Damaged?.Invoke(appliedDamage);
         if (IsDead)
         {
